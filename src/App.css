@@ -1,0 +1,146 @@
+* {
+    font-family: Arial;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+body {
+    background-image: url("images/candy_dispensers.jpg");
+    background-size: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#root {
+    
+    width: 90vw;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    border-radius: 5px;
+}
+
+header {
+
+    width: 95%;
+    margin: 2% auto;
+
+    border: 2px solid #FFCCCC;
+    background-color: #FFEEEE;
+}
+
+div {
+    margin: 2% auto;
+}
+
+.candyStock {
+
+    margin: 0 auto;
+    width: 95%;
+    
+    border: 2px solid #CCCC99;
+    background-color: #FFFFEE;
+}
+
+.candySelection
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.candy {
+    width: 22%;
+}
+
+.candy img {
+    width: 100%;
+    border: 2px solid #CCCCCC;
+    border-radius: 5px;
+}
+
+.candy h3 {
+    margin: 0.5rem auto;
+}
+
+.candy p {
+    margin: 0 auto;
+}
+
+.inputDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
+input, button {
+    width: 45%;
+    line-height: 2rem;
+}
+
+input {
+    border: 2px solid #CCCCCC;
+}
+
+button {
+    background-color: #EEEECC;
+    border: 2px solid #CCCC99;
+    cursor: pointer;
+
+    border-radius: 2px;
+}
+
+button:hover, button:active {
+    background-color: #FFFFCC;
+}
+
+.bottomContainer {
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    margin-bottom: 5%;
+}
+
+.employeeDashboard, .shoppingBasket {
+
+    border-radius: 2px;
+
+    
+    width: 45%;
+}
+
+.employeeDashboard {
+   
+    border: 2px solid #FFCC99;
+    background-color: #FFEECC;
+    
+}
+
+.shoppingBasket {
+ 
+    border: 2px solid #99CC99;
+    background-color: #EEFFCC;
+    
+}
+
+.basketItem {
+
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.basketItem button {
+
+    width: 2rem;
+    height: 2rem;
+}
