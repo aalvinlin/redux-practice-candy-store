@@ -1,20 +1,26 @@
 import React from "react";
+import { connect } from 'react-redux';
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = props => {
 
     return (
 
         <div className="employeeDashboard">
             <h2>Employee Dashboard</h2>
 
+            {/* <form> */}
+            
             <form>
-
                 <h3>Add to existing stock</h3>
                 <input placeholder="candy name" />
+                <select name = "candyAddStock">
+                    {props.candyTypes.map(candy => (<option value="candy.name">{candy.name}</option>))}
+                </select>
                 <br />
                 <input placeholder="pounds to add" />
                 <br />
                 <button>Add pounds</button>
+            </form>
 
                 <h3>Change unit price</h3>
                 <input placeholder="candy name" />
@@ -38,10 +44,27 @@ const EmployeeDashboard = () => {
                 <br />
                 <button>Add new candy</button>
 
-            </form>
+            {/* </form> */}
         </div>
     )
 
 }
 
-export default EmployeeDashboard;
+function mapStateToProps(state) {
+    return {
+        candyTypes: state.candyTypes
+    };
+}
+
+export default connect(mapStateToProps, {})(EmployeeDashboard);
+
+{/* <form action="/action_page.php">
+  <select name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</form> */}

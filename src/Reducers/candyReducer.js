@@ -81,8 +81,10 @@ export const candyReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     candyTypes: state.candyTypes.map(candy => {
+
+                            // if the store has enough pounds of candy to give to the user, remove that number from stock
                             if (candy.id === action.payload.id && (candy.stock - action.payload.pounds > 0)) {
-                                // candy.stock = candy.stock - action.payload.pounds;
+                                
                                 return {
                                     ...candy,
                                     stock: candy.stock - action.payload.pounds
@@ -94,10 +96,34 @@ export const candyReducer = (state = initialState, action) => {
                     ,
                     shoppingBasket: {
                         ...state.shoppingBasket,
-                        candyTypes: [
-                            ...state.shoppingBasket.candyTypes,
-                            action.payload
-                        ],
+
+                        candyTypes:
+                        
+                        // if the user already has the candy in the basket (check candy IDs), update existing entry instead of creating a new entry
+                        (state.shoppingBasket.candyTypes.filter(basketCandy => basketCandy.id === candyData.id).length === 1) ? 
+
+                        // return updated weight count if it matches
+                        state.shoppingBasket.candyTypes.map(basketCandy => {
+
+                            if (basketCandy.id === candyData.id)
+                                {
+                                    return {
+                                        ...basketCandy,
+                                        pounds: basketCandy.pounds + action.payload.pounds
+                                    }
+                                }
+                            else
+                                { return basketCandy; }
+
+                        })
+                        :
+                        // otherwise, add the candy to the basket as new entry in the shoppingBasket.candyTypes array
+                            [
+                                ...state.shoppingBasket.candyTypes,
+                                action.payload
+                            ],
+                        
+                        
                         totalpounds: state.shoppingBasket.totalpounds + action.payload.pounds,
                         totalCost: state.shoppingBasket.totalCost + (candyCostPerPound * action.payload.pounds)
                     }
@@ -144,6 +170,26 @@ export const candyReducer = (state = initialState, action) => {
                         totalCost: state.shoppingBasket.totalCost - (candyCostPerPound * action.payload.pounds)
                 }
             };}
+
+            case 'ADD_CANDY':
+                return {
+                    ...state,
+                    candyTypes: [
+                        ...state.andyTypes,
+                        action.payload
+                    ]
+                };
+            case 'REMOVE_CANDY':
+                return {
+                    ...state,
+                    candyTypes: state.candyTypes.filter(candy => candy.id !== payload)
+                }
+            case 'ADD_STOCK':
+                return {
+                    ...state,
+                };
+            case 'CHANGE_PRICE':
+                return state;
 
         default:
             return state;

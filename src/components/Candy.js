@@ -29,7 +29,7 @@ const Candy = (props) => {
                         event.preventDefault();
                         props.addToBasket({
                             ...props.item,
-                            pounds: pounds
+                            pounds: parseFloat(pounds)
                         });
 
                         }}>Add</button>
