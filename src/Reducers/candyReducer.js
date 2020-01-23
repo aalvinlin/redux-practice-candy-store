@@ -76,7 +76,7 @@ export const candyReducer = (state = initialState, action) => {
                 // update state with candy in shopper's basket
                 // update total cost and total pounds
 
-                
+                let enoughCandyInStock = true;
 
                 return {
                     ...state,
@@ -84,12 +84,13 @@ export const candyReducer = (state = initialState, action) => {
 
                             // if the store has enough pounds of candy to give to the user, remove that number from stock
                             if (candy.id === action.payload.id && (candy.stock - action.payload.pounds > 0)) {
-                                
+
                                 return {
                                     ...candy,
                                     stock: candy.stock - action.payload.pounds
                                 };
                             } else {
+                                enoughCandyInStock = false;
                                 return candy;
                             }
                         })
@@ -124,8 +125,9 @@ export const candyReducer = (state = initialState, action) => {
                             ],
                         
                         
-                        totalpounds: state.shoppingBasket.totalpounds + action.payload.pounds,
-                        totalCost: state.shoppingBasket.totalCost + (candyCostPerPound * action.payload.pounds)
+                        
+                        totalpounds: (enoughCandyInStock) ? state.shoppingBasket.totalpounds + action.payload.pounds : state.shoppingBasket.totalpounds,
+                        totalCost: (enoughCandyInStock) ? state.shoppingBasket.totalCost + (candyCostPerPound * action.payload.pounds) : state.shoppingBasket.totalCost
                     }
                 };
         }

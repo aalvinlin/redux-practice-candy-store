@@ -76,7 +76,7 @@ div {
     justify-content: space-around;
 }
 
-input, button {
+input, button, select {
     width: 45%;
     line-height: 2rem;
 }

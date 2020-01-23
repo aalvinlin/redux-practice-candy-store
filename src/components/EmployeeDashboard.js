@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from 'react-redux';
 
 const EmployeeDashboard = props => {
+    const [selectedCandy, setSelectedCandy] = useState('');
+
+    const handleDropDownChange = () => {
+        setSelectedCandy('haaaaaaaalp');
+    };
+    
+    const handlechange = (event) => {
+        return {
+            ...nameofstateobj,
+            [event.target.name]: event.target.value
+        }
+    }
 
     return (
 
         <div className="employeeDashboard">
             <h2>Employee Dashboard</h2>
-
-            {/* <form> */}
             
             <form>
                 <h3>Add to existing stock</h3>
-                <input placeholder="candy name" />
-                <select name = "candyAddStock">
+                <select name="candyAddStock" onChange={handleDropDownChange}>
                     {props.candyTypes.map(candy => (<option value="candy.name">{candy.name}</option>))}
                 </select>
                 <br />
@@ -22,8 +31,11 @@ const EmployeeDashboard = props => {
                 <button>Add pounds</button>
             </form>
 
+            <form>
                 <h3>Change unit price</h3>
-                <input placeholder="candy name" />
+                <select name="candyAddStock" onChange={handleDropDownChange}>
+                    {props.candyTypes.map(candy => (<option value="candy.name">{candy.name}</option>))}
+                </select>
                 <br />
                 <input placeholder="new cost per pound" />
                 <br />
@@ -33,8 +45,9 @@ const EmployeeDashboard = props => {
                 <input placeholder="candy name" />
                 <br />
                 <button>Remove candy type</button>
-                
+            </form>
 
+            <form>
                 <h3>Add new candy type to store</h3>
                 <input placeholder="candy name" />
                 <br />
@@ -43,8 +56,7 @@ const EmployeeDashboard = props => {
                 <input placeholder="cost per pound" />
                 <br />
                 <button>Add new candy</button>
-
-            {/* </form> */}
+            </form>
         </div>
     )
 
@@ -57,14 +69,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {})(EmployeeDashboard);
-
-{/* <form action="/action_page.php">
-  <select name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <br><br>
-  <input type="submit">
-</form> */}
