@@ -28,6 +28,13 @@ export const formatPrice = (price) => {
                 }
         }
 
-    return "$" + wholeNumberWithCommas + decimal;
+    // trim decimal in case there are floating point issues
+    let decimalFormatted = decimal.slice(0, 2);
+
+    // if the hundredths place is equal to zero, add a zero
+    if (parseInt(decimalFormatted) < 10)
+        { decimalFormatted += "0"; }
+
+    return "$" + wholeNumberWithCommas + decimalFormatted;
 
 }

@@ -23,7 +23,38 @@ Initial state object (feel free to populate this with more candy types! Check ou
             stock: 100,
             img: "https://cdn.shopify.com/s/files/1/0004/8132/9204/products/smarties_2_large.jpg?v=1550328122",
             costPerLb: 2
+        },
+        {
+            id: 1,
+            name: "Snickers",
+            stock: 100,
+            img: "http://cdn.shopify.com/s/files/1/0004/8132/9204/products/snickers1.8ox-bar_1_1024x1024.jpg?v=1522356035",
+            costPerLb: 8.99
+        },
+        {
+            id: 2,
+            name: "Reese's Peanut Butter Cups",
+            stock: 100,
+            img: "http://cdn.shopify.com/s/files/1/0004/8132/9204/products/reeses_pb_cups_1_1024x1024.jpg?v=1550328137",
+            costPerLb: 13.49
         }
+        {
+            id:3,
+            name: 'Fun Dip',
+            stock: 100,
+            img: 'https://cdn.shopify.com/s/files/1/0004/8132/9204/products/fun-dip_5_large.jpg?v=1522355872',
+            costPerLb: 8.25            
+        }
+
+        {
+            id: 4
+            name: "Kinder Chocolate",
+            stock: 100,
+            img: "https://m.media-amazon.com/images/I/81xa+e3CZeL._AC_UL320_ML3_.jpg".
+            costPerLb: 8.49
+
+        }
+
     ],
 
     shoppingBasket: {

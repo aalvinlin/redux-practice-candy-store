@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from 'react-redux';
 import {formatPrice} from "../utils/formatPrice";
 import BasketItem from "./BasketItem";
 
-const ShoppingBasket = () => {
+const ShoppingBasket = (props) => {
 
     return (
 
@@ -10,10 +11,24 @@ const ShoppingBasket = () => {
             <h2>Shopping Basket</h2>
 
             <form>
+                {props.shoppingBasket.candyTypes.map(item => {
                 
-                <BasketItem />
+                let candyData = props.candyTypes.filter(candyInArray => candyInArray.id === item.id)[0];
+            
+                if (!candyData)
+                {
+                    return (<p>No candy with ID {item.id} found.</p>);
+                }
 
-                <h3>Total cost: {formatPrice(5)}</h3>
+                return (
+                    <BasketItem key={item.id} item={item} candyData={candyData} />
+                )}
+                
+                
+                )}
+                
+
+                <h3>Total cost: {formatPrice(props.shoppingBasket.totalCost)}</h3>
 
             </form>
 
@@ -22,4 +37,11 @@ const ShoppingBasket = () => {
 
 }
 
-export default ShoppingBasket;
+function mapStateToProps(state) {
+     return {
+        shoppingBasket: state.shoppingBasket,
+        candyTypes: state.candyTypes
+     }
+}
+
+export default connect(mapStateToProps, {} )(ShoppingBasket);

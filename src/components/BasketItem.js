@@ -1,18 +1,31 @@
 import React from "react";
 import {formatPrice} from "../utils/formatPrice";
+import { connect } from 'react-redux';
+import { removeFromBasket } from '../actions/customerActions';
 
-const BasketItem = () => {
 
+
+const BasketItem = ({item, candyData, removeFromBasket}) => {
+
+    let priceOfItem = candyData.costPerLb * item.pounds;
+    
     return (
 
         <div className="basketItem">
-            <p>Smarties ($2/lb)</p>
-            <p>5 lbs</p>
-            <p>{formatPrice(10)}</p>
-            <button>X</button>
+            <p>{item.name} ({formatPrice(candyData.costPerLb)}/lb)</p>
+            <p>{item.pounds} lbs</p>
+            <p>{formatPrice(priceOfItem)}</p>
+            <button onClick={ (event) => {
+
+                console.log("Remove button clicked!", item);
+
+                event.preventDefault();
+                removeFromBasket(item);
+
+            }}>X</button>
         </div>
     )
 
 }
 
-export default BasketItem;
+export default connect(null, { removeFromBasket })(BasketItem);
